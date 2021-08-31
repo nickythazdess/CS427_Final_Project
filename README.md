@@ -1,4 +1,4 @@
-# CS427_Midterm_Project
+# CS427_Final_Project
 An endless runner game project for CS427 final.  
 
 Group 7 - 100kg:  
