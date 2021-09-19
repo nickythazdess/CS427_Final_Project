@@ -126,7 +126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013842435444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000014029247798}
@@ -160,6 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleName: LowBarrier
   impactSound: {fileID: 8300000, guid: 9ed08397b3fef21418662ed63130d301, type: 3}
+  staticAndJumpOver: 0
 --- !u!82 &82000012920248836
 AudioSource:
   m_ObjectHideFlags: 0

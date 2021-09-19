@@ -87,6 +87,7 @@ public class TrackManager : MonoBehaviour
     }
 
     IEnumerator WaitToStart(float timer = 5f, bool start = true) {
+        playerController.NoRunning();
         playerController.characterAnimator.Play("Start");
         m_timeToStart = timer;
 
@@ -106,9 +107,8 @@ public class TrackManager : MonoBehaviour
         m_currentZone = 0;
         m_currentZoneDistance = 0;
         m_beginSafeTracks = 2;
-        //PlayerData.instance.usedCharacter
-        string charName = characterDictionary.characters[0].characterName;
-
+        
+        string charName = characterDictionary.characters[PlayerData.instance.usedCharacter].characterName;
         var characterInfo = Addressables.InstantiateAsync(charName, Vector3.zero, Quaternion.identity);
         yield return characterInfo;
         if (characterInfo.Result == null || !(characterInfo.Result is GameObject)) yield break;
@@ -313,12 +313,6 @@ public class TrackManager : MonoBehaviour
                 } else {
                     toUse = Coin.coinPool.Get(pos, rot);
                     toUse.transform.SetParent(track.coinTransform, true);
-                }
-
-                if (toUse != null) {
-                    Vector3 oldPos = toUse.transform.position;
-                    toUse.transform.position += Vector3.back;
-                    toUse.transform.position = oldPos;
                 }
             }
 

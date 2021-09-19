@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() {
+
         if (Input.GetKeyDown(KeyCode.LeftArrow)) ChangeLane(-1);
         else if (Input.GetKeyDown(KeyCode.RightArrow)) ChangeLane(1);
         else if (Input.GetKeyDown(KeyCode.UpArrow)) StartJumping();
@@ -116,6 +117,10 @@ public class PlayerController : MonoBehaviour
         int targetLane = currentLane + direction;
         currentLane = (targetLane < 0 || targetLane > 2) ? currentLane : targetLane;
         targetPosition = new Vector3((currentLane - 1) * trackManager.laneOffset, 0f, 0f);
+    }
+
+    public void NoRunning() {
+        running = false;
     }
 
     public void StartRunning() {

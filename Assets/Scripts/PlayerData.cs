@@ -20,8 +20,7 @@ public class PlayerData
     public int usedCharacter;  // Currently selected character.
 
     // File management
-    static public void Create()
-    {
+    static public void Create() {
 		if (m_Instance == null) m_Instance = new PlayerData();
         m_Instance.saveFile = Application.persistentDataPath + "/save.bin";
 
@@ -29,8 +28,7 @@ public class PlayerData
         else NewSave();
     }
 
-	static public void NewSave()
-	{
+	static public void NewSave() {
 		m_Instance.usedCharacter = 0;
         m_Instance.coins = 0;
         m_Instance.premium = 0;
@@ -39,8 +37,7 @@ public class PlayerData
 		m_Instance.Save();
 	}
 
-    public void Read()
-    {
+    public void Read() {
         BinaryReader r = new BinaryReader(new FileStream(saveFile, FileMode.Open));
 
         usedCharacter = r.ReadInt32();
@@ -51,8 +48,7 @@ public class PlayerData
         r.Close();
     }
 
-    public void Save()
-    {
+    public void Save() {
         BinaryWriter w = new BinaryWriter(new FileStream(saveFile, FileMode.OpenOrCreate));
 
         w.Write(coins);

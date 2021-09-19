@@ -25,12 +25,12 @@ MonoBehaviour:
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: 473ffa016efe3724cad08daa78e3d12a
-    m_Address: Raccoon
+    m_Address: Racoon
     m_ReadOnly: 0
     m_SerializedLabels:
     - characters
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 1000010415562562, guid: 473ffa016efe3724cad08daa78e3d12a, type: 3}
+    m_TargetAsset: {fileID: 1000010415562562, guid: 473ffa016efe3724cad08daa78e3d12a, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a8d34fd6e8fdafb49afae62a52d11c4e, type: 2}
   m_SchemaSet:

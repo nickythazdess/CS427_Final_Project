@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000010256476064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.013, y: 0, z: -1.2484512}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000010506057518}
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleName: RoadworksCone
   impactSound: {fileID: 8300000, guid: 0d9e50755a43a614a8233233466a4e80, type: 3}
+  staticAndJumpOver: 0
 --- !u!65 &65000011930901984
 BoxCollider:
   m_ObjectHideFlags: 0

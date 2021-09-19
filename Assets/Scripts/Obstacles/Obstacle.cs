@@ -3,7 +3,6 @@ using UnityEngine;
 
 public abstract class Obstacle : MonoBehaviour
 {
-	public string obstacleName;
 	public AudioClip impactSound;
 	public bool staticAndJumpOver = false;
 
@@ -17,8 +16,7 @@ public abstract class Obstacle : MonoBehaviour
 
 		if (impactAnimation != null) impactAnimation.Play();
 
-		if (audioSource != null && impactSound != null)
-		{
+		if (audioSource != null && impactSound != null) {
 			audioSource.Stop();
 			audioSource.loop = false;
 			audioSource.clip = impactSound;

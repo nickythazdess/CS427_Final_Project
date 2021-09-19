@@ -12,14 +12,12 @@ public abstract class Powerup : MonoBehaviour
     public Sprite icon;
 	public AudioClip activatedSound;
 
-    public enum PowerupType
-    {
+    public enum PowerupType {
         MAGNET,
         INVINCIBILITY,
         EXTRALIFE
     }
     
-    //public ParticleSystem activeParticle;
     public AssetReference activeParticleRef;
     public bool canBeSpawned = true;
 

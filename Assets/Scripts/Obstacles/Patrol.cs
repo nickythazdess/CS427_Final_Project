@@ -34,7 +34,7 @@ public class Patrol : Obstacle
 		Vector3 pos;
 		Quaternion rot;
 		_track.GetPoint(t, out pos, out rot);
-        var asset = Addressables.InstantiateAsync(obstacleName, pos, rot);
+        var asset = Addressables.InstantiateAsync(gameObject.name, pos, rot);
         yield return asset;
         if (asset.Result == null || !(asset.Result is GameObject)) yield break;
 

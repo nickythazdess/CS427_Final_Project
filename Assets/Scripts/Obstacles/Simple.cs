@@ -19,7 +19,7 @@ public class Simple : Obstacle
             int lane = startLane + i;
             lane = lane > 1 ? -1 : lane;
 
-            var asset = Addressables.InstantiateAsync(obstacleName, pos, rot);
+            var asset = Addressables.InstantiateAsync(gameObject.name, pos, rot);
             yield return asset;
             if (asset.Result == null || !(asset.Result is GameObject)) yield break;
 

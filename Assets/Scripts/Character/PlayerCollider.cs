@@ -37,15 +37,12 @@ public class PlayerCollider : MonoBehaviour
     {
 		m_collider = GetComponent<CapsuleCollider>();
         m_audio = GetComponent<AudioSource>();
-        Shader.SetGlobalFloat("_BlinkingValue", 0f);
         invincible = false;
 	}
 
     void Update() {
-        int count = magnetCoins.Count;
-        for(int i = 0; i < count; ++i)
-            magnetCoins[i].transform.position = Vector3.MoveTowards(magnetCoins[i].transform.position, 
-            transform.position, 10f * Time.deltaTime);
+        foreach(GameObject coin in magnetCoins)
+            coin.transform.position = Vector3.MoveTowards(coin.transform.position, transform.position, 10f * Time.deltaTime);
     }
 
     public void Jump(bool jump) {
@@ -130,8 +127,7 @@ public class PlayerCollider : MonoBehaviour
         }
     }
 
-    public void SetInvincible(float timer = 2f)
-	{
+    public void SetInvincible(float timer = 2f) {
         invincible = true;
 		StartCoroutine(InvincibleTimer(timer));
 	}
@@ -142,22 +138,18 @@ public class PlayerCollider : MonoBehaviour
 		float blink = 1f;
 		float previousBlink = 0f;
 
-		while(time < period && invincible)
-		{
+		while(time < period && invincible) {
 			Shader.SetGlobalFloat("_BlinkingValue", blink);
             yield return null;
-
 			time += Time.deltaTime;
 			previousBlink += Time.deltaTime;
-			if (previousBlink > 0.2f)
-			{
+			if (previousBlink > 0.2f) {
 				previousBlink = 0;
 				blink = 1f - blink;
 			}
         }
 
 		Shader.SetGlobalFloat("_BlinkingValue", 0f);
-
 		invincible = false;
     }
 }
