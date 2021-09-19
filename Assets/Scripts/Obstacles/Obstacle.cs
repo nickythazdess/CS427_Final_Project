@@ -1,34 +1,27 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// This script is the base class for implemented obstacles.
-/// Derived classes should take care of spawning any object needed for the obstacles.
-/// </summary>
-[RequireComponent(typeof(AudioSource))]
 public abstract class Obstacle : MonoBehaviour
 {
-	public AudioClip impactedSound;
+	public string obstacleName;
+	public AudioClip impactSound;
+	public bool staticAndJumpOver = false;
 
     public virtual void Setup() {}
 
-    public abstract IEnumerator Spawn(TrackSegment segment, float t);
+    public abstract IEnumerator Spawn(Track track, float t);
 
-	public virtual void Impacted()
-	{
-		Animation anim = GetComponentInChildren<Animation>();
+	public virtual void Impact() {
+		Animation impactAnimation = GetComponentInChildren<Animation>();
 		AudioSource audioSource = GetComponent<AudioSource>();
 
-		if (anim != null)
-		{
-			anim.Play();
-		}
+		if (impactAnimation != null) impactAnimation.Play();
 
-		if (audioSource != null && impactedSound != null)
+		if (audioSource != null && impactSound != null)
 		{
 			audioSource.Stop();
 			audioSource.loop = false;
-			audioSource.clip = impactedSound;
+			audioSource.clip = impactSound;
 			audioSource.Play();
 		}
 	}

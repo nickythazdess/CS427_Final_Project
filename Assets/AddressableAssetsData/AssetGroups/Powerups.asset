@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Powerups
+  m_EditorClassIdentifier: 
+  m_GroupName: Powerups
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9a50f7bb6db093c468129c328804239f
+  m_SerializeEntries:
+  - m_GUID: 8cede34fb26a722408198e0d27628ae9
+    m_Address: MagnetParticles
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - powerups
+    - particles
+    m_MainAsset: {fileID: 1778844492263050, guid: 8cede34fb26a722408198e0d27628ae9, type: 3}
+    m_TargetAsset: {fileID: 1778844492263050, guid: 8cede34fb26a722408198e0d27628ae9, type: 3}
+  - m_GUID: ba9ada52ec59a9a419f39eb32bf9a3b0
+    m_Address: InvincibilityParticles
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - powerups
+    - particles
+    m_MainAsset: {fileID: 1608420632658026, guid: ba9ada52ec59a9a419f39eb32bf9a3b0, type: 3}
+    m_TargetAsset: {fileID: 1608420632658026, guid: ba9ada52ec59a9a419f39eb32bf9a3b0, type: 3}
+  - m_GUID: 9e2b957157514af40870bf65c60ae63f
+    m_Address: ExtraLifeParticles
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - powerups
+    - particles
+    m_MainAsset: {fileID: 1470639489738500, guid: 9e2b957157514af40870bf65c60ae63f, type: 3}
+    m_TargetAsset: {fileID: 1470639489738500, guid: 9e2b957157514af40870bf65c60ae63f, type: 3}
+  - m_GUID: 8c89761b43b2362418709a8178d5dd8c
+    m_Address: CoinMagnet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - powerups
+    m_MainAsset: {fileID: 103320, guid: 8c89761b43b2362418709a8178d5dd8c, type: 3}
+    m_TargetAsset: {fileID: 103320, guid: 8c89761b43b2362418709a8178d5dd8c, type: 3}
+  - m_GUID: cccc43bc040988e488680155c25b163c
+    m_Address: ExtraLife
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - powerups
+    m_MainAsset: {fileID: 1000010343856422, guid: cccc43bc040988e488680155c25b163c, type: 3}
+    m_TargetAsset: {fileID: 1000010343856422, guid: cccc43bc040988e488680155c25b163c, type: 3}
+  - m_GUID: 527cd33d94f565c428b85a011d736c3c
+    m_Address: Invincibilty
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - powerups
+    m_MainAsset: {fileID: 1000012396982878, guid: 527cd33d94f565c428b85a011d736c3c, type: 3}
+    m_TargetAsset: {fileID: 1000012396982878, guid: 527cd33d94f565c428b85a011d736c3c, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a8d34fd6e8fdafb49afae62a52d11c4e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f217e5663dc92df4da536a5c64d78658, type: 2}
+    - {fileID: 11400000, guid: b66a2bcf0b2666847a1db9602a9c4710, type: 2}

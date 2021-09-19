@@ -18,7 +18,6 @@ public class PlayerData
     public int bestScore;
     public int bestDistance;
     public int usedCharacter;  // Currently selected character.
-    public bool tutorialDone;
 
     // File management
     static public void Create()
@@ -37,7 +36,6 @@ public class PlayerData
         m_Instance.premium = 0;
         m_Instance.bestScore = 0;
         m_Instance.bestDistance = 0;
-        m_Instance.tutorialDone = false;
 		m_Instance.Save();
 	}
 
@@ -48,7 +46,6 @@ public class PlayerData
         usedCharacter = r.ReadInt32();
         coins = r.ReadInt32();
         premium = r.ReadInt32();
-        tutorialDone = r.ReadBoolean();
         bestScore = r.ReadInt32();
         bestDistance = r.ReadInt32();
         r.Close();
@@ -63,7 +60,6 @@ public class PlayerData
         w.Write(premium);
 		w.Write(bestScore);
         w.Write(bestDistance);
-        w.Write(tutorialDone);
         w.Close();
     }
 }

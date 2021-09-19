@@ -35,60 +35,53 @@ public abstract class Powerup : MonoBehaviour
 
     public void ResetTime() => sinceStart = 0;
 
-    //override this to make a consumable not usable (e.g. avoid using ExtraLife when at full health)
-    public virtual bool CanBeUsed(Character c) { return true; }
-
-    IEnumerator ReleaseTimer(GameObject obj, float time)
-    {
+    protected void Release(GameObject obj, float time) {
+        StartCoroutine(ReleaseTimer(obj, time));
+    }
+    
+    IEnumerator ReleaseTimer(GameObject obj, float time) {
         yield return new WaitForSeconds(time);
         Addressables.ReleaseInstance(obj);
     }
 
-    public virtual IEnumerator Started(Character c)
-    {
+    public virtual IEnumerator Started(PlayerController c) {
         sinceStart = 0;
 
-		if (activatedSound != null)
-		{
+		if (activatedSound != null) {
 			c.powerupSource.clip = activatedSound;
 			c.powerupSource.Play();
 		}
 
-        if(activeParticleRef != null)
-        {
+        if(activeParticleRef != null) {
             var op = activeParticleRef.InstantiateAsync();
             yield return op;
+            if (op.Result == null || !(op.Result is GameObject)) yield break;
             spawnedParticle = op.Result.GetComponent<ParticleSystem>();
             if (!spawnedParticle.main.loop)
-                StartCoroutine(ReleaseTimer(spawnedParticle.gameObject, spawnedParticle.main.duration));
-            spawnedParticle.transform.SetParent(c.characterCollider.transform);
+                Release(spawnedParticle.gameObject, spawnedParticle.main.duration);
+            spawnedParticle.transform.SetParent(c.playerCollider.transform);
             spawnedParticle.transform.localPosition = op.Result.transform.position;
         }
 	}
 
-    public virtual void Tick(Character c)
-    {
+    public virtual void Tick(PlayerController c) {
         sinceStart += Time.deltaTime;
-        if (sinceStart >= duration)
-        {
+        if (sinceStart >= duration) {
             isActive = false;
             return;
         }
     }
 
-    public virtual void Ended(Character c)
-    {
+    public virtual void Ended(PlayerController c) {
         if (spawnedParticle != null && spawnedParticle.main.loop)
             Addressables.ReleaseInstance(spawnedParticle.gameObject);
 
         if (activatedSound != null && c.powerupSource.clip == activatedSound)
             c.powerupSource.Stop();
 
-        for (int i = 0; i < c.powerups.Count; ++i)
-        {
-            if (c.powerups[i].active && c.powerups[i].activatedSound != null)
-            {
-                c.powerupSource.clip = c.powerups[i].activatedSound;
+        for (int i = 0; i < c.activePowerups.Count; ++i) {
+            if (c.activePowerups[i].active && c.activePowerups[i].activatedSound != null) {
+                c.powerupSource.clip = c.activePowerups[i].activatedSound;
                 c.powerupSource.Play();
             }
         }

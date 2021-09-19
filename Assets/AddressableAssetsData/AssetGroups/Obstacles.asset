@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Obstacles
+  m_EditorClassIdentifier: 
+  m_GroupName: Obstacles
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 768a34711df0e71488a44f16e96079a1
+  m_SerializeEntries:
+  - m_GUID: 814ecbb1a0bb7fa499273d24fc2e246a
+    m_Address: Rat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - obstacles
+    m_MainAsset: {fileID: 1397461901619994252, guid: 814ecbb1a0bb7fa499273d24fc2e246a, type: 3}
+    m_TargetAsset: {fileID: 1397461901619994252, guid: 814ecbb1a0bb7fa499273d24fc2e246a, type: 3}
+  - m_GUID: 22facfbe232a90b45b681c638f2e490d
+    m_Address: Bin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - obstacles
+    m_MainAsset: {fileID: 1000011638144408, guid: 22facfbe232a90b45b681c638f2e490d, type: 3}
+    m_TargetAsset: {fileID: 1000011638144408, guid: 22facfbe232a90b45b681c638f2e490d, type: 3}
+  - m_GUID: b19a0bd8ede69fe4683dff84150a047b
+    m_Address: HighBarrier
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - obstacles
+    m_MainAsset: {fileID: 1000011769374998, guid: b19a0bd8ede69fe4683dff84150a047b, type: 3}
+    m_TargetAsset: {fileID: 1000011769374998, guid: b19a0bd8ede69fe4683dff84150a047b, type: 3}
+  - m_GUID: d68ac797bf384f84bbca159dc2a6e4d7
+    m_Address: LowBarrier
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - obstacles
+    m_MainAsset: {fileID: 1000013842435444, guid: d68ac797bf384f84bbca159dc2a6e4d7, type: 3}
+    m_TargetAsset: {fileID: 1000013842435444, guid: d68ac797bf384f84bbca159dc2a6e4d7, type: 3}
+  - m_GUID: 82eb370d70e50344cb6eeb919a1429b8
+    m_Address: RoadworksBarrier
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - obstacles
+    m_MainAsset: {fileID: 1000010455400752, guid: 82eb370d70e50344cb6eeb919a1429b8, type: 3}
+    m_TargetAsset: {fileID: 1000010455400752, guid: 82eb370d70e50344cb6eeb919a1429b8, type: 3}
+  - m_GUID: f0070c0f7d7cdcb4eb7176be4a87caa9
+    m_Address: RoadworksCone
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - obstacles
+    m_MainAsset: {fileID: 1000010256476064, guid: f0070c0f7d7cdcb4eb7176be4a87caa9, type: 3}
+    m_TargetAsset: {fileID: 1000010256476064, guid: f0070c0f7d7cdcb4eb7176be4a87caa9, type: 3}
+  - m_GUID: d9056217b765e1b4893238b9e7ebddbc
+    m_Address: WheelyBin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - obstacles
+    m_MainAsset: {fileID: 1000013234899880, guid: d9056217b765e1b4893238b9e7ebddbc, type: 3}
+    m_TargetAsset: {fileID: 1000013234899880, guid: d9056217b765e1b4893238b9e7ebddbc, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a8d34fd6e8fdafb49afae62a52d11c4e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f98ec493f44a7254bbb28cf0f2623edf, type: 2}
+    - {fileID: 11400000, guid: ff5fd2be1106e9244b0a2a5230eb3f31, type: 2}

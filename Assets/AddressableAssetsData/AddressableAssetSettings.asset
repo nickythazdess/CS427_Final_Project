@@ -29,6 +29,10 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 3ac48b08cf1f4ce40ba32de0b6f5ed6a, type: 2}
   - {fileID: 11400000, guid: 7a00af2801264324cbb5394872c291c9, type: 2}
+  - {fileID: 11400000, guid: c844b137529246642a9c18cabfd6d169, type: 2}
+  - {fileID: 11400000, guid: a793326c9eaa655439ef251c533a70a0, type: 2}
+  - {fileID: 11400000, guid: 607ac5ac24ba3a24a9c6cc9bb27e8e1b, type: 2}
+  - {fileID: 11400000, guid: 6b9961e18d7af184db779f34a1883eea, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -71,6 +75,11 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - characters
+    - obstacles
+    - powerups
+    - particles
+    - zones
+    - coins
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: fbd64be1c0bf13d469236c2006b7bdad, type: 2}

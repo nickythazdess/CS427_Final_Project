@@ -50,10 +50,10 @@ MonoBehaviour:
   icon: {fileID: 21300050, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
   activatedSound: {fileID: 0}
   activeParticleRef:
-    m_AssetGUID: 
+    m_AssetGUID: 9e2b957157514af40870bf65c60ae63f
     m_SubObjectName: 
     m_SubObjectType: 
-  canBeSpawned: 0
+  canBeSpawned: 1
 --- !u!136 &136000012951084108
 CapsuleCollider:
   m_ObjectHideFlags: 0

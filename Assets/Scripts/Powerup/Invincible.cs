@@ -8,9 +8,9 @@ public class Invincible : Powerup
 
     public override PowerupType GetPowerupType() => PowerupType.INVINCIBILITY;
 
-    public override IEnumerator Started(Character c)
+    public override IEnumerator Started(PlayerController c)
     {
         yield return base.Started(c);
-        StartCoroutine(c.SetInvincible(5f));
+        c.playerCollider.SetInvincible(10f);
     }
 }

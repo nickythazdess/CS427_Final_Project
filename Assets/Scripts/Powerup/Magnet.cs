@@ -9,19 +9,19 @@ public class Magnet : Powerup
 
 	protected Collider[] returnColls = new Collider[20];
 
-	public override void Tick(Character c)
+	public override void Tick(PlayerController c)
     {
         base.Tick(c);
+        PlayerCollider coll = c.playerCollider;
+        int totalCollider = Physics.OverlapBoxNonAlloc(coll.transform.position, 
+        new Vector3(5.0f, 1.0f, 1.0f), returnColls, coll.transform.rotation, 1 << 6);
 
-        int totalCollider = Physics.OverlapBoxNonAlloc(c.characterCollider.transform.position, 
-        new Vector3(20.0f, 1.0f, 1.0f), returnColls, c.characterCollider.transform.rotation, (1 << 6) | (1 << 8));
-
-        for(int i = 0; i < totalCollider; ++i)
+        for(int i = 0; i < totalCollider; i++)
         {
-			if (returnColls[i] != null && !c.magnetCoins.Contains(returnColls[i].gameObject))
+			if (returnColls[i] != null && !coll.magnetCoins.Contains(returnColls[i].gameObject))
 			{
-				returnColls[i].transform.SetParent(c.transform);
-				c.magnetCoins.Add(returnColls[i].gameObject);
+				returnColls[i].transform.SetParent(coll.transform);
+				coll.magnetCoins.Add(returnColls[i].gameObject);
 			}
 		}
     }
