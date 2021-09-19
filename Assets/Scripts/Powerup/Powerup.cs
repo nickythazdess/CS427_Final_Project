@@ -36,7 +36,7 @@ public abstract class Powerup : MonoBehaviour
     protected void Release(GameObject obj, float time) {
         StartCoroutine(ReleaseTimer(obj, time));
     }
-    
+    //Timer to release particle systems
     IEnumerator ReleaseTimer(GameObject obj, float time) {
         yield return new WaitForSeconds(time);
         Addressables.ReleaseInstance(obj);
@@ -61,7 +61,7 @@ public abstract class Powerup : MonoBehaviour
             spawnedParticle.transform.localPosition = op.Result.transform.position;
         }
 	}
-
+    //This will be attached to GameScene.cs Update()
     public virtual void Tick(PlayerController c) {
         sinceStart += Time.deltaTime;
         if (sinceStart >= duration) {

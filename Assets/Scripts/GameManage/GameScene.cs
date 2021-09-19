@@ -183,7 +183,7 @@ public class GameScene : MonoBehaviour
 		finished = true;
 		trackManager.StopMoving();
         Shader.SetGlobalFloat("_BlinkingValue", 0.0f);
-        
+
         PlayerData.instance.coins += trackManager.coins;
         PlayerData.instance.premium += trackManager.premium;
         if (newBestScore) PlayerData.instance.bestScore = Mathf.FloorToInt(trackManager.score);
@@ -200,6 +200,6 @@ public class GameScene : MonoBehaviour
 	}
 
     void OnApplicationFocus(bool focus) {
-        if (!focus) Pause();
+        //if (!focus) Pause();
     }
 }

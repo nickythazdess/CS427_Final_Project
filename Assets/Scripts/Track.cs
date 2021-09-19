@@ -10,7 +10,7 @@ public class Track : MonoBehaviour
 	public Transform objectRoot;
 	public Transform coinTransform;
 
-    public AssetReference[] possibleObstacles; 
+    public AssetReference[] possibleObstacles;
 
     public float[] obstaclePositions;
 
@@ -18,6 +18,7 @@ public class Track : MonoBehaviour
 
     protected float m_WorldLength;
 
+    //Setup
     void OnEnable() {
         m_WorldLength = 0;
 
@@ -35,11 +36,8 @@ public class Track : MonoBehaviour
 		coinTransform = obj.transform;
     }
 
-    public void GetWorldPoint(float wt, out Vector3 pos, out Quaternion rot) {
-        float t = wt / m_WorldLength;
-        GetPoint(t, out pos, out rot);
-    }
-
+    //A track length will be marked from 0..1. Get the position and the rotation
+    //at a certain point of a track (0: beginning of the track, 1: end of the track)
 	public void GetPoint(float t, out Vector3 pos, out Quaternion rot) {
         float clampedT = Mathf.Clamp01(t);
         float scaledT = (pathParent.childCount - 1) * clampedT;
@@ -59,6 +57,13 @@ public class Track : MonoBehaviour
         rot = Quaternion.Lerp(orig.rotation, target.rotation, segmentT);
     }
 
+    //Similar to get point but in world unit
+    public void GetWorldPoint(float wt, out Vector3 pos, out Quaternion rot) {
+        float t = wt / m_WorldLength;
+        GetPoint(t, out pos, out rot);
+    }
+
+    //Clean up when the game ends
 	public void Cleanup() {
 		while(coinTransform.childCount > 0) {
 			Transform t = coinTransform.GetChild(0);

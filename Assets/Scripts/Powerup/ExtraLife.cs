@@ -8,7 +8,7 @@ public class ExtraLife : Powerup
 
     public override PowerupType GetPowerupType() => PowerupType.EXTRALIFE;
 
-    // If collected when max health, award coins instead
+    // Can't be used when max health
     public override IEnumerator Started(PlayerController c)
     {
         yield return base.Started(c);

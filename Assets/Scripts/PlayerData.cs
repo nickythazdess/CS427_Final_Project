@@ -17,7 +17,7 @@ public class PlayerData
     public int premium;
     public int bestScore;
     public int bestDistance;
-    public int usedCharacter;  // Currently selected character.
+    public int usedCharacter;
 
     // File management
     static public void Create() {
@@ -29,22 +29,23 @@ public class PlayerData
     }
 
 	static public void NewSave() {
-		m_Instance.usedCharacter = 0;
         m_Instance.coins = 0;
         m_Instance.premium = 0;
         m_Instance.bestScore = 0;
         m_Instance.bestDistance = 0;
+        m_Instance.usedCharacter = 0;
+        
 		m_Instance.Save();
 	}
 
     public void Read() {
         BinaryReader r = new BinaryReader(new FileStream(saveFile, FileMode.Open));
 
-        usedCharacter = r.ReadInt32();
         coins = r.ReadInt32();
         premium = r.ReadInt32();
         bestScore = r.ReadInt32();
         bestDistance = r.ReadInt32();
+        usedCharacter = r.ReadInt32();
         r.Close();
     }
 
@@ -52,10 +53,10 @@ public class PlayerData
         BinaryWriter w = new BinaryWriter(new FileStream(saveFile, FileMode.OpenOrCreate));
 
         w.Write(coins);
-        w.Write(usedCharacter);
         w.Write(premium);
 		w.Write(bestScore);
         w.Write(bestDistance);
+        w.Write(usedCharacter);
         w.Close();
     }
 }

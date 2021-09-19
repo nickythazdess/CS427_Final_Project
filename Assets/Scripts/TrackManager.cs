@@ -71,7 +71,7 @@ public class TrackManager : MonoBehaviour
         s_Instance = this;
         m_audio = GetComponent<AudioSource>();
     }
-
+    //Make the track and the player start moving
     public void StartMoving(bool start = true) {
         playerController.StartRunning();
         moving = true;
@@ -81,7 +81,7 @@ public class TrackManager : MonoBehaviour
     public void StopMoving() {
         moving = false;
     }
-
+    //public version of WaitToStart
     public void Wait(float period, bool start = true) {
         StartCoroutine(WaitToStart(period, start));
     }
@@ -98,7 +98,7 @@ public class TrackManager : MonoBehaviour
         m_timeToStart = -1;
         StartMoving(start);
     }
-
+    //Spawn the player, setup variables
     public IEnumerator Begin() {
         m_coinAccumulator = 0;
         m_premiumAccumulator = 0;
@@ -106,7 +106,7 @@ public class TrackManager : MonoBehaviour
         m_distanceAccumulator = 0;
         m_currentZone = 0;
         m_currentZoneDistance = 0;
-        m_beginSafeTracks = 2;
+        m_beginSafeTracks = 1;
         
         string charName = characterDictionary.characters[PlayerData.instance.usedCharacter].characterName;
         var characterInfo = Addressables.InstantiateAsync(charName, Vector3.zero, Quaternion.identity);
@@ -126,7 +126,7 @@ public class TrackManager : MonoBehaviour
         m_audio.Play();
         loaded = true;
     }
-
+    //Clean up when game ends
     public void End() {
         foreach (Track track in m_tracks)
             Addressables.ReleaseInstance(track.gameObject);
@@ -141,7 +141,7 @@ public class TrackManager : MonoBehaviour
         playerController.character = null;
 
     }
-    
+    //Update track's speed and distance, continuously swpaning and removing tracks  
     void Update() {
         while (currentSpawnedTrack < 10) {
             StartCoroutine(SpawnNewTrack());
@@ -178,8 +178,8 @@ public class TrackManager : MonoBehaviour
             m_tracks[0].GetWorldPoint(m_currentTrackDistance, out currentPos, out currentRot);
         }
 
-        playerController.transform.rotation = currentRot;
         playerController.transform.position = currentPos;
+        playerController.transform.rotation = currentRot; 
 
         count = m_pastTracks.Count;
         for (int i = 0; i < count; i++) {
@@ -238,8 +238,7 @@ public class TrackManager : MonoBehaviour
 
         m_tracks.Add(newTrack);
     }
-
-
+    //Spawning obstacles on the tracks
     public void SpawnObstacle(Track track) {
         if (track.possibleObstacles.Length > 0) {
             for (int i = 0; i < track.obstaclePositions.Length; i++) {
@@ -258,7 +257,7 @@ public class TrackManager : MonoBehaviour
         Obstacle obstacle = (asset.Result as GameObject).GetComponent<Obstacle>();
         if (obstacle != null) yield return obstacle.Spawn(track, track.obstaclePositions[index]);
     }
-
+    //Spawning coins and powerup on the tracks
     public IEnumerator SpawnCoinAndPowerup(Track track) {
         const float increment = 1.5f;
         float currentWorldPos = 0.0f;

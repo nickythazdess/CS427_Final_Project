@@ -4,7 +4,6 @@ using UnityEngine;
 public abstract class Obstacle : MonoBehaviour
 {
 	public AudioClip impactSound;
-	public bool staticAndJumpOver = false;
 
     public virtual void Setup() {}
 
