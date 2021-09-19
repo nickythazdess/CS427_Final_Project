@@ -39,7 +39,9 @@ public class Pregame : MonoBehaviour
 
     public void ChangeCharacter(int value) {
         audioSource.PlayOneShot(buttonClick);
-        PlayerData.instance.usedCharacter = (PlayerData.instance.usedCharacter + value) % 2;
+        PlayerData.instance.usedCharacter += value;
+        if (PlayerData.instance.usedCharacter > 1) PlayerData.instance.usedCharacter = 0;
+        else if (PlayerData.instance.usedCharacter < 0) PlayerData.instance.usedCharacter = 1;
         PlayerData.instance.Save();
         StartCoroutine(PopulateCharacters());
     }
