@@ -10,7 +10,7 @@ public class Track : MonoBehaviour
 	public Transform objectRoot;
 	public Transform coinTransform;
 
-    public AssetReference[] possibleObstacles;
+    public Obstacle[] possibleObstacles;
 
     public float[] obstaclePositions;
 

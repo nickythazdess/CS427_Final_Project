@@ -214,12 +214,10 @@ MonoBehaviour:
   objectRoot: {fileID: 0}
   coinTransform: {fileID: 0}
   possibleObstacles:
-  - m_AssetGUID: f0070c0f7d7cdcb4eb7176be4a87caa9
-    m_SubObjectName: 
-    m_SubObjectType: 
-  - m_AssetGUID: d68ac797bf384f84bbca159dc2a6e4d7
-    m_SubObjectName: 
-    m_SubObjectType: 
+  - {fileID: 114000013297908680, guid: f0070c0f7d7cdcb4eb7176be4a87caa9, type: 3}
+  - {fileID: 114000013991433400, guid: d9056217b765e1b4893238b9e7ebddbc, type: 3}
+  - {fileID: 114000011742927702, guid: d68ac797bf384f84bbca159dc2a6e4d7, type: 3}
+  - {fileID: 114000011473360826, guid: b19a0bd8ede69fe4683dff84150a047b, type: 3}
   obstaclePositions:
   - 0.5
 --- !u!1 &1000011283875314

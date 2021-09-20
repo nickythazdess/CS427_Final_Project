@@ -180,9 +180,11 @@ MonoBehaviour:
   pathParent: {fileID: 4000012921942030}
   manager: {fileID: 0}
   objectRoot: {fileID: 0}
-  collectibleTransform: {fileID: 0}
-  possibleObstacles: []
-  obstaclePositions: []
+  coinTransform: {fileID: 0}
+  possibleObstacles:
+  - {fileID: 114000012751075388, guid: 22facfbe232a90b45b681c638f2e490d, type: 3}
+  obstaclePositions:
+  - 0.5
 --- !u!1 &1000011847037896
 GameObject:
   m_ObjectHideFlags: 0

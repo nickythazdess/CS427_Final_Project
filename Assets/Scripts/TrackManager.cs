@@ -230,21 +230,15 @@ public class TrackManager : MonoBehaviour
     }
     //Spawning obstacles on the tracks
     public void SpawnObstacle(Track track) {
-        if (track.possibleObstacles.Length > 0)
+        int obsCount = track.possibleObstacles.Length;
+        if (obsCount > 0)
             for (int i = 0; i < track.obstaclePositions.Length; i++)
-                StartCoroutine(SpawnObstacleFromAssetRef(
-                    track.possibleObstacles[Random.Range(0, track.possibleObstacles.Length)], track, i));
+                StartCoroutine(track.possibleObstacles[Random.Range(0, obsCount)]
+                .Spawn(track, track.obstaclePositions[i]));
 
         StartCoroutine(SpawnCoinAndPowerup(track));
     }
-
-    private IEnumerator SpawnObstacleFromAssetRef(AssetReference reference, Track track, int index) {
-        AsyncOperationHandle asset = reference.LoadAssetAsync<GameObject>();
-        yield return asset;
-        if (asset.Result == null || !(asset.Result is GameObject)) yield break;
-        Obstacle obstacle = (asset.Result as GameObject).GetComponent<Obstacle>();
-        if (obstacle != null) yield return obstacle.Spawn(track, track.obstaclePositions[index]);
-    }
+    
     //Spawning coins and powerup on the tracks
     public IEnumerator SpawnCoinAndPowerup(Track track) {
         const float increment = 1.5f;
