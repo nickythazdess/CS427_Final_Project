@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397461901619994252}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 1398772640573861274}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1312455910658885266
 Animator:
   serializedVersion: 3
@@ -176,14 +176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d646cd71bc586469f90eb2e3fced4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleName: Rat
   impactSound: {fileID: 8300000, guid: 90690b03aaccb6e4a96d2cdb757b3b44, type: 3}
-  staticAndJumpOver: 0
   minTime: 2
   maxTime: 4
-  patrollingSound:
-  - {fileID: 8300000, guid: 692deea899152264f8419135ceefafcb, type: 3}
-  - {fileID: 8300000, guid: a683c76e59dd6b04a9420526560624a0, type: 3}
 --- !u!1 &1397461901912246236
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,13 +203,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397461901912246236}
-  m_LocalRotation: {x: -0.18301271, y: -0.18301271, z: -0.6830127, w: 0.6830127}
-  m_LocalPosition: {x: -0.0013548716, y: 0.44974872, z: 0.06108686}
+  m_LocalRotation: {x: -0.18301266, y: -0.18301266, z: -0.6830127, w: 0.6830127}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1398772643860507908}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30, y: 0, z: -90}
 --- !u!137 &1333625668850048622
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -294,8 +289,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397461902652504398}
   m_LocalRotation: {x: 0.49991715, y: 0.5000829, z: -0.49991715, w: 0.5000829}
-  m_LocalPosition: {x: -0.040000014, y: -0.006249999, z: 0.0124999955}
-  m_LocalScale: {x: 1.4467169, y: 1.1662109, z: 1.1064138}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1398772643860507908}
   m_RootOrder: 1

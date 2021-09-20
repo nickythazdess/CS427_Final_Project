@@ -214,16 +214,10 @@ MonoBehaviour:
   objectRoot: {fileID: 0}
   coinTransform: {fileID: 0}
   possibleObstacles:
-  - m_AssetGUID: b19a0bd8ede69fe4683dff84150a047b
+  - m_AssetGUID: f0070c0f7d7cdcb4eb7176be4a87caa9
     m_SubObjectName: 
     m_SubObjectType: 
   - m_AssetGUID: d68ac797bf384f84bbca159dc2a6e4d7
-    m_SubObjectName: 
-    m_SubObjectType: 
-  - m_AssetGUID: d9056217b765e1b4893238b9e7ebddbc
-    m_SubObjectName: 
-    m_SubObjectType: 
-  - m_AssetGUID: f0070c0f7d7cdcb4eb7176be4a87caa9
     m_SubObjectName: 
     m_SubObjectType: 
   obstaclePositions:

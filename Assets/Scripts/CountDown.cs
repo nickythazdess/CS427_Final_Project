@@ -8,7 +8,7 @@ public class CountDown : MonoBehaviour
 	void OnEnable() {
 		m_audio = GetComponent<AudioSource>();
 		period = m_audio.clip.length;
-        m_audio.PlayDelayed(0.7f);
+        m_audio.PlayDelayed(1f);
 	}
 
 	void Update() {

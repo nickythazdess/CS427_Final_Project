@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement;
@@ -17,15 +18,16 @@ public class Patrol : Obstacle
 	protected float currentPos;
 
     public override void Setup() {
-		originalPos = transform.localPosition + transform.right * track.manager.laneOffset;
+		originalPos = transform.localPosition - transform.forward * track.manager.laneOffset;
 		transform.localPosition = originalPos;
 
 		float actualTime = Random.Range(minTime, maxTime);
-        m_speed = (track.manager.laneOffset * 4) / actualTime;
+        m_speed = (track.manager.laneOffset * 4f) / actualTime;
 
         animator = GetComponent<Animator>();
 		if (animator != null)
-            animator.SetFloat("SpeedRatio", animator.GetCurrentAnimatorClipInfo(0)[0].clip.length / actualTime);
+            animator.SetFloat(Animator.StringToHash("SpeedRatio"),
+                animator.GetCurrentAnimatorClipInfo(0)[0].clip.length / actualTime);
 
 	    moving = true;
 	}
@@ -34,30 +36,34 @@ public class Patrol : Obstacle
 		Vector3 pos;
 		Quaternion rot;
 		_track.GetPoint(t, out pos, out rot);
-        var asset = Addressables.InstantiateAsync(gameObject.name, pos, rot);
+        AsyncOperationHandle asset = Addressables.InstantiateAsync(gameObject.name, pos, rot);
         yield return asset;
         if (asset.Result == null || !(asset.Result is GameObject)) yield break;
 
         GameObject obj = asset.Result as GameObject;
         obj.transform.SetParent(_track.objectRoot, true);
-        obj.transform.localPosition = Vector3.zero;
+        obj.transform.rotation = new Quaternion(0f, 1f, 0f, 1f);
 
-        Patrol po = obj.GetComponent<Patrol>();
-        po.track = _track;
-        po.Setup();
+        Vector3 oldPos = obj.transform.position;
+        obj.transform.position += Vector3.back;
+        obj.transform.position = oldPos;
+
+        Patrol patrol = obj.GetComponent<Patrol>();
+        patrol.track = _track;
+        
+        patrol.Setup();
     }
 
 	void Update() {
 		if (!moving) return;
 
 		currentPos += m_speed * Time.deltaTime;
-        transform.localPosition = originalPos - transform.right * Mathf.PingPong(currentPos, track.manager.laneOffset * 2);
+        transform.localPosition = originalPos + transform.forward * Mathf.PingPong(currentPos, track.manager.laneOffset * 2f);
 	}
 
     public override void Impact() {
 	    moving = false;
 		base.Impact();
-
-		if (animator != null) animator.SetTrigger("Dead");
+		if (animator != null) animator.SetTrigger(Animator.StringToHash("Dead"));
 	}
 }

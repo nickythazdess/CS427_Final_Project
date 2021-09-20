@@ -20,7 +20,7 @@ public class Magnet : Powerup
         {
 			if (returnColls[i] != null && !coll.magnetCoins.Contains(returnColls[i].gameObject))
 			{
-				returnColls[i].transform.SetParent(coll.transform);
+				returnColls[i].transform.SetParent(c.transform);
 				coll.magnetCoins.Add(returnColls[i].gameObject);
 			}
 		}

@@ -33,8 +33,7 @@ public class PlayerCollider : MonoBehaviour
     static int s_HitHash = Animator.StringToHash("Hit");
     static int s_DeadHash = Animator.StringToHash("Dead");
 
-    protected void Start()
-    {
+    protected void Start() {
 		m_collider = GetComponent<CapsuleCollider>();
         m_audio = GetComponent<AudioSource>();
         invincible = false;
@@ -62,15 +61,14 @@ public class PlayerCollider : MonoBehaviour
     }
 
     protected void ObtainCoin(Collider c) {
-        GameObject obj = c.gameObject;
-        if (magnetCoins.Contains(obj)) magnetCoins.Remove(obj);
-        Coin coin = obj.GetComponent<Coin>();
+        if (magnetCoins.Contains(c.gameObject)) magnetCoins.Remove(c.gameObject);
+        Coin coin = c.gameObject.GetComponent<Coin>();
         if (coin != null) {
             collectParticle.Play();
             if (coin.isPremium) {
                 Addressables.ReleaseInstance(c.gameObject);
                 trackManager.premium += 1;
-                trackManager.score += 10;
+                trackManager.score += 50;
                 m_audio.PlayOneShot(premiumSound);
             } else {
                 Coin.coinPool.Free(c.gameObject);
@@ -114,7 +112,7 @@ public class PlayerCollider : MonoBehaviour
         if (powerup != null) {
             collectParticle.Play();
             controller.UsePowerup(powerup);
-            trackManager.score += 50;
+            trackManager.score += 20;
         }
     }
 

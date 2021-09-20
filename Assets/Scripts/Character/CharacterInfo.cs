@@ -1,10 +1,6 @@
 using System;
 using UnityEngine;
 
-/// <summary>
-/// Data to define a character
-/// </summary>
-
 public class CharacterInfo : MonoBehaviour
 {
     public string characterName;

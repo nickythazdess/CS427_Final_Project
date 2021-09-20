@@ -128,14 +128,11 @@ public class TrackManager : MonoBehaviour
     }
     //Clean up when game ends
     public void End() {
-        foreach (Track track in m_tracks)
-            Addressables.ReleaseInstance(track.gameObject);
-
-        foreach (Track track in m_pastTracks)
-            Addressables.ReleaseInstance(track.gameObject);
-
+        foreach (Track track in m_tracks) Addressables.ReleaseInstance(track.gameObject);
+        foreach (Track track in m_pastTracks) Addressables.ReleaseInstance(track.gameObject);
         m_tracks.Clear();
         m_pastTracks.Clear();
+
         playerController.End();
         Addressables.ReleaseInstance(playerController.character.gameObject);
         playerController.character = null;
@@ -163,32 +160,25 @@ public class TrackManager : MonoBehaviour
             currentSpawnedTrack--;
         }
 
-        int count;
         Vector3 currentPos;
         Quaternion currentRot;
         m_tracks[0].GetWorldPoint(m_currentTrackDistance, out currentPos, out currentRot);
 
         if (currentPos.sqrMagnitude > 10000f) {
-            count = m_tracks.Count;
-            for (int i = 0; i < count; i++) m_tracks[i].transform.position -= currentPos;
-
-            count = m_pastTracks.Count;
-            for (int i = 0; i < count; i++) m_pastTracks[i].transform.position -= currentPos;
-
+            foreach (Track track in m_tracks) track.transform.position -= currentPos;
+            foreach (Track pastTrack in m_pastTracks) pastTrack.transform.position -= currentPos;
             m_tracks[0].GetWorldPoint(m_currentTrackDistance, out currentPos, out currentRot);
         }
 
         playerController.transform.position = currentPos;
-        playerController.transform.rotation = currentRot; 
+        playerController.transform.rotation = currentRot;
 
-        count = m_pastTracks.Count;
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < m_pastTracks.Count; ++i)
             if ((m_pastTracks[i].transform.position - currentPos).z < -30f) {
                 m_pastTracks[i].Cleanup();
                 m_pastTracks.RemoveAt(i);
                 i--;
             }
-        }
 
         if (m_speed < maxSpeed) m_speed += acceleration * Time.deltaTime;
         else m_speed = maxSpeed;
@@ -240,12 +230,10 @@ public class TrackManager : MonoBehaviour
     }
     //Spawning obstacles on the tracks
     public void SpawnObstacle(Track track) {
-        if (track.possibleObstacles.Length > 0) {
-            for (int i = 0; i < track.obstaclePositions.Length; i++) {
-                AssetReference assetRef = track.possibleObstacles[Random.Range(0, track.possibleObstacles.Length)];
-                StartCoroutine(SpawnObstacleFromAssetRef(assetRef, track, i));
-            }
-        }
+        if (track.possibleObstacles.Length > 0)
+            for (int i = 0; i < track.obstaclePositions.Length; i++)
+                StartCoroutine(SpawnObstacleFromAssetRef(
+                    track.possibleObstacles[Random.Range(0, track.possibleObstacles.Length)], track, i));
 
         StartCoroutine(SpawnCoinAndPowerup(track));
     }
