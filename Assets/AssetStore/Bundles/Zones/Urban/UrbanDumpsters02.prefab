@@ -658,7 +658,7 @@ MonoBehaviour:
   objectRoot: {fileID: 0}
   coinTransform: {fileID: 0}
   possibleObstacles:
-  - {fileID: 114000013297908680, guid: f0070c0f7d7cdcb4eb7176be4a87caa9, type: 3}
+  - {fileID: 6885919851645861702, guid: 814ecbb1a0bb7fa499273d24fc2e246a, type: 3}
   - {fileID: 114000013991433400, guid: d9056217b765e1b4893238b9e7ebddbc, type: 3}
   obstaclePositions:
   - 0.5
