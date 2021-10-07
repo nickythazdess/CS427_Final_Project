@@ -126,7 +126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000011769374998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013229578836}
@@ -158,7 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43e53567a2bc7f4fb54db31772a6511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleName: HighBarrier
   impactSound: {fileID: 8300000, guid: 9ed08397b3fef21418662ed63130d301, type: 3}
 --- !u!111 &111000013917959116
 Animation:

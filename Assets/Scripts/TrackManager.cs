@@ -49,7 +49,6 @@ public class TrackManager : MonoBehaviour
     protected int m_coinAccumulator;
     protected int m_premiumAccumulator;
     protected int m_currentZone;
-    protected int m_previousTrack;
     protected int m_beginSafeTracks;
 
     protected float m_scoreAccumulator;
@@ -164,7 +163,7 @@ public class TrackManager : MonoBehaviour
         Quaternion currentRot;
         m_tracks[0].GetWorldPoint(m_currentTrackDistance, out currentPos, out currentRot);
 
-        if (currentPos.sqrMagnitude > 10000f) {
+        if (currentPos.magnitude > 100f) {
             foreach (Track track in m_tracks) track.transform.position -= currentPos;
             foreach (Track pastTrack in m_pastTracks) pastTrack.transform.position -= currentPos;
             m_tracks[0].GetWorldPoint(m_currentTrackDistance, out currentPos, out currentRot);
@@ -196,46 +195,41 @@ public class TrackManager : MonoBehaviour
 
         int numOfTracks = map.zones[m_currentZone].prefabList.Length;
         int trackUse = Random.Range(0, numOfTracks);
-        if (trackUse == m_previousTrack) trackUse = (trackUse + 1) % numOfTracks;
 
         AsyncOperationHandle trackToUse = map.zones[m_currentZone].prefabList[trackUse]
-            .InstantiateAsync(new Vector3(-100f, -100f, -100f), Quaternion.identity);
+            .InstantiateAsync(new Vector3(0, 0, -100f), Quaternion.identity);
         yield return trackToUse;
         if (trackToUse.Result == null || !(trackToUse.Result is GameObject)) yield break;
         Track newTrack = (trackToUse.Result as GameObject).GetComponent<Track>();
         newTrack.manager = this;
 
-        Vector3 curExitPos;
-        Quaternion curExitRot;
-        if (m_tracks.Count > 0) m_tracks[m_tracks.Count - 1].GetPoint(1.0f, out curExitPos, out curExitRot);
+        Vector3 latestExitPos;
+        Quaternion latestExitRot;
+        if (m_tracks.Count > 0) m_tracks[m_tracks.Count - 1].GetPoint(1.0f, out latestExitPos, out latestExitRot);
         else {
-            curExitPos = transform.position;
-            curExitRot = transform.rotation;
+            latestExitPos = transform.position;
+            latestExitRot = transform.rotation;
         }
 
-        newTrack.transform.rotation = curExitRot;
+        newTrack.transform.rotation = latestExitRot;
 
         Vector3 entryPos;
         Quaternion entryRot;
         newTrack.GetPoint(0.0f, out entryPos, out entryRot);
 
-        newTrack.transform.position = curExitPos + (newTrack.transform.position - entryPos);
+        newTrack.transform.position = latestExitPos + (newTrack.transform.position - entryPos);
         newTrack.transform.localScale = new Vector3((Random.value > 0.5f ? -1 : 1), 1, 1);
         newTrack.objectRoot.localScale = new Vector3(1.0f / newTrack.transform.localScale.x, 1, 1);
 
         if (m_beginSafeTracks <= 0) SpawnObstacle(newTrack);
         else m_beginSafeTracks -= 1;
-
         m_tracks.Add(newTrack);
     }
     //Spawning obstacles on the tracks
     public void SpawnObstacle(Track track) {
         int obsCount = track.possibleObstacles.Length;
-        if (obsCount > 0)
-            for (int i = 0; i < track.obstaclePositions.Length; i++)
-                StartCoroutine(track.possibleObstacles[Random.Range(0, obsCount)]
-                .Spawn(track, track.obstaclePositions[i]));
-
+        if (obsCount > 0) foreach(float pos in track.obstaclePositions)
+            StartCoroutine(track.possibleObstacles[Random.Range(0, obsCount)].Spawn(track, pos));
         StartCoroutine(SpawnCoinAndPowerup(track));
     }
     

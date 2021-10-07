@@ -472,8 +472,7 @@ MonoBehaviour:
   objectRoot: {fileID: 0}
   coinTransform: {fileID: 0}
   possibleObstacles: []
-  obstaclePositions:
-  - 0.5
+  obstaclePositions: []
 --- !u!1 &1000013899166494
 GameObject:
   m_ObjectHideFlags: 0

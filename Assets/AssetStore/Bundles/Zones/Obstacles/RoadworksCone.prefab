@@ -47,9 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e050a3dba80f4549a29f68a3f731d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleName: RoadworksCone
   impactSound: {fileID: 8300000, guid: 0d9e50755a43a614a8233233466a4e80, type: 3}
-  staticAndJumpOver: 0
 --- !u!65 &65000011930901984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -172,7 +170,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 58219e8eced12ce4c9723796d507d515, type: 3}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!1 &1000013536997040
@@ -188,7 +186,7 @@ GameObject:
   - component: {fileID: 23000010168293852}
   - component: {fileID: 111000013835392624}
   m_Layer: 0
-  m_Name: RoadWorksCone
+  m_Name: RoadWorksCone01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

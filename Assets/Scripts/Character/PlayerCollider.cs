@@ -30,13 +30,11 @@ public class PlayerCollider : MonoBehaviour
     protected bool invincible;
     protected AudioSource m_audio;
 
-    static int s_HitHash = Animator.StringToHash("Hit");
-    static int s_DeadHash = Animator.StringToHash("Dead");
-
     protected void Start() {
 		m_collider = GetComponent<CapsuleCollider>();
         m_audio = GetComponent<AudioSource>();
         invincible = false;
+        Shader.SetGlobalFloat("_BlinkingValue", 0f);
 	}
 
     void Update() {
@@ -60,18 +58,18 @@ public class PlayerCollider : MonoBehaviour
         }
     }
 
-    protected void ObtainCoin(Collider c) {
-        if (magnetCoins.Contains(c.gameObject)) magnetCoins.Remove(c.gameObject);
-        Coin coin = c.gameObject.GetComponent<Coin>();
+    protected void ObtainCoin(GameObject obj) {
+        if (magnetCoins.Contains(obj)) magnetCoins.Remove(obj);
+        Coin coin = obj.GetComponent<Coin>();
         if (coin != null) {
             collectParticle.Play();
             if (coin.isPremium) {
-                Addressables.ReleaseInstance(c.gameObject);
+                Addressables.ReleaseInstance(obj);
                 trackManager.premium += 1;
                 trackManager.score += 50;
                 m_audio.PlayOneShot(premiumSound);
             } else {
-                Coin.coinPool.Free(c.gameObject);
+                Coin.coinPool.Free(obj);
                 trackManager.coins += 1;
                 trackManager.score += 1;
                 m_audio.PlayOneShot(coinSound);
@@ -89,7 +87,7 @@ public class PlayerCollider : MonoBehaviour
         if (obstacle != null) obstacle.Impact();
         else Addressables.ReleaseInstance(c.gameObject);
 
-        controller.characterAnimator.SetTrigger(s_HitHash);
+        controller.characterAnimator.SetTrigger("Hit");
         controller.currentLife -= 1;
         hitParticle.Play();
         if (controller.currentLife > 0) {
@@ -98,7 +96,7 @@ public class PlayerCollider : MonoBehaviour
             trackManager.Wait(1.5f);
         } else {
             m_audio.PlayOneShot(character.deathSound);
-            character.animator.SetBool(s_DeadHash, true);
+            character.animator.SetBool("Dead", true);
             koParticle.gameObject.SetActive(true);
         }
     }
@@ -118,7 +116,7 @@ public class PlayerCollider : MonoBehaviour
 
     void OnTriggerEnter(Collider c) {
         switch (c.gameObject.layer) {
-            case 6: ObtainCoin(c); break;
+            case 6: ObtainCoin(c.gameObject); break;
             case 7: HitObstacle(c); break;
             case 8: ObtainPowerup(c); break;
             default: break;

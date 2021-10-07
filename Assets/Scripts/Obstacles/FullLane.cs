@@ -16,8 +16,5 @@ public class FullLane : Obstacle
 
         GameObject obj = asset.Result as GameObject;
         obj.transform.SetParent(track.objectRoot, true);
-        Vector3 oldPos = obj.transform.position;
-        obj.transform.position += Vector3.back;
-        obj.transform.position = oldPos;
     }
 }

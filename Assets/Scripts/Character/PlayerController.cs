@@ -42,12 +42,6 @@ public class PlayerController : MonoBehaviour
     protected Vector3 targetPosition;
     protected Animator m_characterAnimator;
 
-	static int s_RunStartHash = Animator.StringToHash("runStart");
-	static int s_MovingHash = Animator.StringToHash("Moving");
-	static int s_JumpingHash = Animator.StringToHash("Jumping");
-	static int s_JumpingSpeedHash = Animator.StringToHash("JumpSpeed");
-	static int s_SlidingHash = Animator.StringToHash("Sliding");
-
     public void Begin() {
         playerCollider.character = character;
         m_characterAnimator = character.GetComponent<Animator>();
@@ -125,13 +119,13 @@ public class PlayerController : MonoBehaviour
 
     public void StartRunning() {
         running = true;
-        m_characterAnimator.Play(s_RunStartHash);
-        m_characterAnimator.SetBool(s_MovingHash, true);
+        m_characterAnimator.Play("runStart");
+        m_characterAnimator.SetBool("Moving", true);
     }
 
     public void StopRunning() {
         running = false;
-        m_characterAnimator.SetBool(s_MovingHash, false);
+        m_characterAnimator.SetBool("Moving", false);
         trackManager.StopMoving();
     }
 
@@ -144,8 +138,8 @@ public class PlayerController : MonoBehaviour
 			jumpPoint = trackManager.distance;
             float animSpeed = 0.5f * (trackManager.speed / correctJumpLength);
 
-            m_characterAnimator.SetFloat(s_JumpingSpeedHash, animSpeed);
-            m_characterAnimator.SetBool(s_JumpingHash, true);
+            m_characterAnimator.SetFloat("JumpSpeed", animSpeed);
+            m_characterAnimator.SetBool("Jumping", true);
 			m_audio.PlayOneShot(character.jumpSound);
 			jumping = true;
         }
@@ -153,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     public void StopJumping() {
         if (jumping) {
-            m_characterAnimator.SetBool(s_JumpingHash, false);
+            m_characterAnimator.SetBool("Jumping", false);
             jumping = false;
             playerCollider.Jump(false);
         }
@@ -169,8 +163,8 @@ public class PlayerController : MonoBehaviour
 			slidePoint = trackManager.distance;
             float animSpeed = 0.5f * (trackManager.speed / correctSlideLength);
 
-			m_characterAnimator.SetFloat(s_JumpingSpeedHash, animSpeed);
-			m_characterAnimator.SetBool(s_SlidingHash, true);
+			m_characterAnimator.SetFloat("JumpSpeed", animSpeed);
+			m_characterAnimator.SetBool("Sliding", true);
 			m_audio.PlayOneShot(character.slideSound);
 			sliding = true;
 		}
@@ -178,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
 	public void StopSliding() {
 		if (sliding) {
-			m_characterAnimator.SetBool(s_SlidingHash, false);
+			m_characterAnimator.SetBool("Sliding", false);
 			sliding = false;
             playerCollider.Slide(false);
 		}

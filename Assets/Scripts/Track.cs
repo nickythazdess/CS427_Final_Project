@@ -6,16 +6,12 @@ public class Track : MonoBehaviour
 {
     public Transform pathParent;
     public TrackManager manager;
-
 	public Transform objectRoot;
 	public Transform coinTransform;
-
     public Obstacle[] possibleObstacles;
-
     public float[] obstaclePositions;
 
     public float worldLength { get { return m_WorldLength; } }
-
     protected float m_WorldLength;
 
     //Setup
@@ -39,8 +35,7 @@ public class Track : MonoBehaviour
     //A track length will be marked from 0..1. Get the position and the rotation
     //at a certain point of a track (0: beginning of the track, 1: end of the track)
 	public void GetPoint(float t, out Vector3 pos, out Quaternion rot) {
-        float clampedT = Mathf.Clamp01(t);
-        float scaledT = (pathParent.childCount - 1) * clampedT;
+        float scaledT = (pathParent.childCount - 1) * Mathf.Clamp01(t);
         int index = Mathf.FloorToInt(scaledT);
         float segmentT = scaledT - index;
 
