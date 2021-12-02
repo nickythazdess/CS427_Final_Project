@@ -7,4 +7,6 @@ Group 7 - 100kg:
 18125035 - Nguyễn Thành Đạt  
 18125138 - Huỳnh Nhật Tân  
 
-A mini endless runner game, use left & right arrow to move between lanes, up arrow to jump and down arrow to slide under.
+A mini 3D endless runner game, use left & right arrow to move between lanes, up arrow to jump and down arrow to slide.
+
+Demo video: https://www.youtube.com/watch?v=qrxK0GGjb2w
